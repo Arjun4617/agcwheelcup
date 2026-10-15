@@ -56,6 +56,54 @@ footer{border-top:1px solid var(--border);padding:22px 0 30px;text-align:center;
   #grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .body{padding:10px}dl{font-size:13px}
 }
+/* ---- Cart ---- */
+.grow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.grow:first-child{margin-top:0}
+.grow .glabel{margin:0;flex:1;min-width:0;word-break:break-word}
+.qty{display:inline-flex;flex:none}
+.qadd{background:var(--red);color:#fff;border:none;border-radius:999px;padding:7px 16px;font:600 13px Figtree,sans-serif;cursor:pointer}
+.qadd:active{background:var(--red-dark)}
+.step{display:inline-flex;align-items:center;background:var(--soft);border:1px solid var(--border);border-radius:999px}
+.step button{width:32px;height:32px;border:none;background:none;font:600 20px/1 Figtree,sans-serif;color:var(--red);cursor:pointer;border-radius:50%}
+.step input.qn{flex:none;width:46px;max-width:46px;padding:4px 0;border:none;background:transparent;border-radius:0;text-align:center;font:600 16px Figtree,sans-serif;-moz-appearance:textfield}
+.step input.qn::-webkit-outer-spin-button,.step input.qn::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+body.hascart footer{padding-bottom:100px}
+#cartbar{display:none;position:fixed;left:0;right:0;bottom:max(16px,env(safe-area-inset-bottom));justify-content:center;z-index:15;pointer-events:none}
+#cartbar.show{display:flex}
+#cartbar button{pointer-events:auto;background:var(--lbl);color:#fff;border:none;border-radius:999px;padding:14px 26px;font:600 15px Figtree,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.28);cursor:pointer}
+#cart{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:30;align-items:flex-end;justify-content:center}
+#cart.open{display:flex}
+.panel{background:#fff;width:100%;max-width:520px;max-height:90vh;max-height:90dvh;overflow-y:auto;border-radius:22px 22px 0 0;padding-bottom:env(safe-area-inset-bottom)}
+.phead{position:sticky;top:0;z-index:1;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px;border-bottom:1px solid var(--border)}
+.phead h2{font-size:20px;font-weight:600}
+.x{width:34px;height:34px;border-radius:50%;border:none;background:var(--soft);font-size:20px;line-height:1;cursor:pointer;color:var(--lbl)}
+.line{display:flex;align-items:center;gap:10px;padding:12px 20px;border-bottom:1px solid var(--border)}
+.ln{flex:1;min-width:0}
+.lname{font-weight:600;word-break:break-word}
+.lsize{font-size:13px;color:var(--lbl3)}
+.rm{border:none;background:none;color:var(--lbl3);font-size:20px;cursor:pointer;width:28px;height:28px}
+.empty{padding:40px 20px;text-align:center;color:var(--lbl3)}
+#pfoot{padding:16px 20px 20px}
+.cfields{display:grid;gap:10px;margin-bottom:12px}
+.cfields label{font-size:13px;color:var(--lbl3);display:grid;gap:4px}
+.cfields input{max-width:none;width:100%}
+#cerr{color:var(--red);font-size:13px;margin-bottom:6px}
+#cerr:empty{display:none}
+#ctot{font-weight:600;margin:6px 0 12px}
+#place{width:100%;padding:14px;font-size:15px}
+.hint{font-size:12.5px;color:var(--lbl3);margin-top:8px;text-align:center}
+#clear{display:block;margin:10px auto 0;background:none;border:none;color:var(--lbl3);font:500 13px Figtree,sans-serif;text-decoration:underline;cursor:pointer}
+#cmsg{font-size:13px;margin-top:12px;text-align:center}
+#cmsg:empty{display:none}
+#cmsg a{color:var(--red);font-weight:600}
+@media(min-width:700px){#cart{align-items:center}.panel{border-radius:22px}}
+@media(max-width:600px){
+  .grow{flex-direction:column;align-items:stretch;gap:6px}
+  .qty{display:flex}
+  .qadd{flex:1}
+  .step{width:100%;justify-content:space-between}
+  .step input.qn{flex:1;width:auto;max-width:none}
+}
 </style>
 </head>
 <body>
@@ -95,25 +143,88 @@ footer{border-top:1px solid var(--border);padding:22px 0 30px;text-align:center;
   <div id="grid"></div>
 </main>
 <footer><div class="contact"><a class="wa" href="https://wa.me/919048376797" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.600 0 11.900-5.300 11.900-11.900 0-3.200-1.200-6.200-3.400-8.300zM12 21.700c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.700 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.3z"/></svg>+91 90483 76797</a><a class="wa" href="https://wa.me/917902888224" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.600 0 11.900-5.300 11.900-11.900 0-3.200-1.200-6.200-3.400-8.300zM12 21.700c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.700 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.3z"/></svg>+91 79028 88224</a></div>© AGC Car Accessories</footer>
+<div id="cartbar"><button id="opencart" type="button">View cart <span id="cbn"></span></button></div>
+<div id="cart" aria-hidden="true"><div class="panel" role="dialog" aria-label="Your cart">
+  <div class="phead"><h2>Your cart</h2><button class="x" id="closecart" type="button" aria-label="Close">&times;</button></div>
+  <div id="clist"></div>
+  <div id="pfoot">
+    <div class="cfields">
+      <label>Name or shop name<input id="cname" placeholder="Name or shop name" autocomplete="name"></label>
+      <label>Phone (optional)<input id="cphone" type="tel" inputmode="tel" placeholder="Phone number" autocomplete="tel"></label>
+    </div>
+    <div id="cerr"></div>
+    <div id="ctot"></div>
+    <button class="pill" id="place" type="button">Place order &middot; PDF</button>
+    <p class="hint">Creates a PDF order sheet. Send it to AGC on WhatsApp to confirm your order.</p>
+    <button id="clear" type="button">Clear cart</button>
+    <div id="cmsg"></div>
+  </div>
+</div></div>
 <div id="view"><img alt=""></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 // Paste your Apps Script Web app URL (ends with /exec). Add ?token=... if you set TOKEN in Code.gs.
 var API = 'https://script.google.com/macros/s/AKfycbw4WXfRqIVeVX9mN1MxFhfw3nItRMRe5BCZzAUt0WOUdvMMnbAZZX4xsIHI8CRDQa8/exec';
 
-var items = [];
+var items = [], cart = {}, rowByKey = {};
+var CART_KEY = 'agc_cart_v1', CUST_KEY = 'agc_cust_v1';
 var $ = function (id) { return document.getElementById(id); };
 function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function p2(n) { return (n < 10 ? '0' : '') + n; }
+
+/* ---------- storage (cart survives a page refresh) ---------- */
+function saveCart() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} }
+function saveCust() { try { localStorage.setItem(CUST_KEY, JSON.stringify({ name: $('cname').value, phone: $('cphone').value })); } catch (e) {} }
+function restore() {
+  try {
+    var c = JSON.parse(localStorage.getItem(CART_KEY) || '{}');
+    Object.keys(c || {}).forEach(function (k) {
+      var x = c[k];
+      if (x && x.qty > 0) cart[k] = { key: k, name: String(x.name || ''), size: String(x.size || '—'), qty: x.qty | 0 };
+    });
+  } catch (e) {}
+  try {
+    var u = JSON.parse(localStorage.getItem(CUST_KEY) || '{}');
+    $('cname').value = u.name || ''; $('cphone').value = u.phone || '';
+  } catch (e) {}
+}
+
+/* ---------- catalog ---------- */
+// Each image becomes one or more "rows" (one per sheet row / size variant) that can be added to the cart.
+function prep(it) {
+  var base = it.name.replace(/\.[a-z0-9]+$/i, '').replace(/^copy of\s*/i, '');
+  var src = it.matched ? it.groups : [{ label: base, details: [] }];
+  it.rows = src.map(function (g) {
+    var size = '', name = g.label, m;
+    for (var i = 0; i < g.details.length; i++) {
+      if (/size/i.test(g.details[i].k) && g.details[i].v) { size = g.details[i].v; break; }
+    }
+    if (!size && it.matched && (m = String(g.label).match(/^(.*?)[-\s]+(\d{1,2})$/))) { name = m[1]; size = m[2]; }
+    var r = { label: g.label, details: g.details, name: name, size: size || '—', key: it.id + '|' + g.label };
+    rowByKey[r.key] = r;
+    return r;
+  });
+}
 
 function load() {
   $('status').textContent = 'Loading…'; $('err').style.display = 'none';
   fetch(API).then(function (r) { return r.json(); }).then(function (d) {
     if (d.error) throw new Error(d.error);
-    items = d; render();
+    items = d; rowByKey = {}; items.forEach(prep); render();
   }).catch(function (e) {
     $('err').textContent = 'Could not load the catalog: ' + e.message + '. Check the API URL and that the web app access is set to Anyone.';
     $('err').style.display = 'block'; $('status').textContent = '';
   });
+}
+
+function stepHTML(q) {
+  return '<div class="step"><button type="button" data-a="dec" aria-label="Decrease quantity">−</button>'
+    + '<input class="qn" type="number" inputmode="numeric" min="0" max="9999" value="' + q + '" aria-label="Quantity">'
+    + '<button type="button" data-a="inc" aria-label="Increase quantity">+</button></div>';
+}
+function qtyHTML(key) {
+  return cart[key] ? stepHTML(cart[key].qty) : '<button type="button" class="qadd" data-a="add">Add</button>';
 }
 
 function render() {
@@ -124,21 +235,160 @@ function render() {
   });
   $('status').textContent = list.length + ' of ' + items.length + ' items';
   $('grid').innerHTML = list.map(function (it) {
-    var dl = it.matched ? it.groups.map(function (g) {
-      return '<div class="glabel">' + esc(g.label) + '</div>'
-        + (g.details.length
-          ? '<dl>' + g.details.map(function (d) { return '<dt>' + esc(d.k) + '</dt><dd>' + esc(d.v) + '</dd>'; }).join('') + '</dl>'
-          : '<div class="none">No details filled in the sheet</div>');
-    }).join('') : '<div class="none">No matching row in the sheet</div>';
+    var body = it.rows.map(function (r, i) {
+      var info = !it.matched ? '<div class="none">No matching row in the sheet</div>'
+        : r.details.length
+          ? '<dl>' + r.details.map(function (d) { return '<dt>' + esc(d.k) + '</dt><dd>' + esc(d.v) + '</dd>'; }).join('') + '</dl>'
+          : '<div class="none">No details filled in the sheet</div>';
+      return '<div class="grow"><div class="glabel">' + esc(r.label) + '</div>'
+        + '<div class="qty" data-id="' + esc(it.id) + '" data-i="' + i + '">' + qtyHTML(r.key) + '</div></div>' + info;
+    }).join('');
     var thumb = 'https://drive.google.com/thumbnail?id=' + it.id + '&sz=w600';
     return '<div class="card"><div class="pic"><img loading="lazy" src="' + thumb + '" alt="' + esc(it.name) + '" data-full="https://drive.google.com/thumbnail?id=' + it.id + '&sz=w1600">'
       + '<button class="dl" data-id="' + it.id + '" aria-label="Download JPG" title="Download JPG"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg></button></div>'
-      + '<div class="body">' + dl + '</div></div>';
+      + '<div class="body">' + body + '</div></div>';
   }).join('');
 }
 
+/* ---------- cart logic ---------- */
+function byId(id) { return items.filter(function (i) { return i.id === id; })[0]; }
+function keyOf(el) {
+  var line = el.closest('.line');
+  if (line) return line.dataset.k;
+  var q = el.closest('.qty'), it = byId(q.dataset.id);
+  return it && it.rows[+q.dataset.i] ? it.rows[+q.dataset.i].key : null;
+}
+function sortedKeys() {
+  return Object.keys(cart).sort(function (a, b) {
+    var x = cart[a], y = cart[b];
+    return x.name.localeCompare(y.name, undefined, { numeric: true }) || String(x.size).localeCompare(String(y.size), undefined, { numeric: true });
+  });
+}
+function totals() {
+  var pcs = 0, ks = Object.keys(cart);
+  ks.forEach(function (k) { pcs += cart[k].qty; });
+  return { lines: ks.length, pcs: pcs };
+}
+function changeQty(key, n) {
+  if (!key) return;
+  n = Math.max(0, Math.min(9999, n | 0));
+  if (n === 0) delete cart[key];
+  else {
+    var c = cart[key];
+    if (!c) {
+      var r = rowByKey[key]; if (!r) return;
+      c = cart[key] = { key: key, name: r.name, size: r.size, qty: 0 };
+    }
+    c.qty = n;
+  }
+  saveCart(); syncGrid(key); renderBar();
+  if ($('cart').classList.contains('open')) renderCart();
+}
+function syncGrid(key) {
+  var els = $('grid').querySelectorAll('.qty');
+  for (var i = 0; i < els.length; i++) if (keyOf(els[i]) === key) els[i].innerHTML = qtyHTML(key);
+}
+function act(btn) {
+  var key = keyOf(btn), cur = cart[key] ? cart[key].qty : 0, a = btn.dataset.a;
+  changeQty(key, a === 'add' ? 1 : a === 'inc' ? cur + 1 : a === 'dec' ? cur - 1 : 0);
+}
+function renderBar() {
+  var t = totals();
+  $('cartbar').classList.toggle('show', t.lines > 0);
+  document.body.classList.toggle('hascart', t.lines > 0);
+  $('cbn').textContent = '(' + t.pcs + ')';
+}
+function renderCart() {
+  var ks = sortedKeys(), t = totals();
+  if (!ks.length) { $('clist').innerHTML = '<div class="empty">Your cart is empty.</div>'; $('pfoot').style.display = 'none'; return; }
+  $('pfoot').style.display = '';
+  $('clist').innerHTML = ks.map(function (k) {
+    var c = cart[k];
+    return '<div class="line" data-k="' + esc(k) + '"><div class="ln"><div class="lname">' + esc(c.name) + '</div>'
+      + (c.size !== '—' ? '<div class="lsize">Size ' + esc(c.size) + '</div>' : '') + '</div>'
+      + stepHTML(c.qty) + '<button type="button" class="rm" data-a="rm" aria-label="Remove">×</button></div>';
+  }).join('');
+  $('ctot').textContent = t.lines + ' item' + (t.lines > 1 ? 's' : '') + ' · total qty ' + t.pcs;
+}
+function openCart() {
+  $('cmsg').innerHTML = ''; $('cerr').textContent = '';
+  renderCart(); $('cart').classList.add('open'); $('cart').setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  $('cart').classList.remove('open'); $('cart').setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
+}
+
+/* ---------- PDF order sheet ---------- */
+function safe(s) { return String(s).replace(/[\u2013\u2014]/g, '-').replace(/[^\x20-\x7E]/g, '?'); }
+
+function makePdf(cust, phone) {
+  var J = window.jspdf;
+  if (!J) throw new Error('the PDF library did not load. Check your internet connection and try again');
+  var doc = new J.jsPDF({ unit: 'mm', format: 'a4' });
+  var W = 210, H = 297, M = 14, ks = sortedKeys(), t = totals(), d = new Date();
+  var no = 'AGC-' + String(d.getFullYear()).slice(2) + p2(d.getMonth() + 1) + p2(d.getDate()) + '-' + p2(d.getHours()) + p2(d.getMinutes());
+  var when = p2(d.getDate()) + '/' + p2(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + p2(d.getHours()) + ':' + p2(d.getMinutes());
+
+  doc.setFillColor(204, 32, 46); doc.rect(0, 0, W, 30, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.text('AGC Car Accessories', M, 14);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+  doc.text('Wheel cover order sheet', M, 22);
+  doc.text('Order ' + no, W - M, 14, { align: 'right' });
+  doc.text(when, W - M, 22, { align: 'right' });
+
+  doc.setTextColor(107, 107, 112); doc.setFontSize(9); doc.text('CUSTOMER', M, 42);
+  doc.setTextColor(29, 29, 31); doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.text(safe(cust), M, 49);
+  var y = 55;
+  if (phone) { doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.text('Phone: ' + safe(phone), M, 55); y = 61; }
+  y += 8;
+
+  function head() {
+    doc.setFillColor(246, 244, 244); doc.rect(M, y - 6, W - 2 * M, 9, 'F');
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(29, 29, 31);
+    doc.text('#', M + 3, y); doc.text('Item', M + 14, y); doc.text('Size', 140, y); doc.text('Qty', W - M - 3, y, { align: 'right' });
+    y += 9;
+  }
+  head();
+  ks.forEach(function (k, i) {
+    var c = cart[k], nm = doc.splitTextToSize(safe(c.name), 110), h = Math.max(8, nm.length * 5 + 3);
+    if (y + h > H - 20) { doc.addPage(); y = 22; head(); }
+    doc.setTextColor(29, 29, 31); doc.setFontSize(10.5);
+    doc.setFont('helvetica', 'normal');
+    doc.text(String(i + 1), M + 3, y); doc.text(nm, M + 14, y); doc.text(safe(c.size), 140, y);
+    doc.setFont('helvetica', 'bold'); doc.text(String(c.qty), W - M - 3, y, { align: 'right' });
+    doc.setDrawColor(230, 226, 226); doc.line(M, y + h - 5, W - M, y + h - 5);
+    y += h;
+  });
+  y += 4;
+  if (y > H - 30) { doc.addPage(); y = 22; }
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(29, 29, 31);
+  doc.text('Total items: ' + t.lines, M + 14, y);
+  doc.text('Total qty: ' + t.pcs, W - M - 3, y, { align: 'right' });
+
+  var pc = doc.getNumberOfPages();
+  for (var p = 1; p <= pc; p++) {
+    doc.setPage(p); doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(107, 107, 112);
+    doc.text('AGC Car Accessories - ' + no, M, H - 10);
+    doc.text('Page ' + p + ' of ' + pc, W - M, H - 10, { align: 'right' });
+  }
+  return { doc: doc, no: no };
+}
+
+function deliver(o) {
+  var file = new File([o.doc.output('blob')], o.no + '.pdf', { type: 'application/pdf' });
+  var mobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if (mobile && navigator.canShare && navigator.canShare({ files: [file] })) {
+    navigator.share({ files: [file], title: 'AGC order ' + o.no }).catch(function () {});
+  } else {
+    o.doc.save(o.no + '.pdf');
+  }
+}
+
+/* ---------- events ---------- */
 $('q').addEventListener('input', render);
 $('reload').addEventListener('click', load);
+
 function download(btn) {
   var it = items.filter(function (i) { return i.id === btn.dataset.id; })[0];
   var url = API + (API.indexOf('?') > -1 ? '&' : '?') + 'action=download&id=' + btn.dataset.id;
@@ -154,12 +404,55 @@ function download(btn) {
   }).catch(function (e) { alert('Download failed: ' + e.message); })
     .then(function () { btn.disabled = false; });
 }
+
 $('grid').addEventListener('click', function (e) {
+  var q = e.target.closest('button[data-a]');
+  if (q) { act(q); return; }
   var b = e.target.closest('.dl');
   if (b) { download(b); return; }
   if (e.target.tagName === 'IMG') { $('view').firstChild.src = e.target.dataset.full; $('view').classList.add('open'); }
 });
+function onQtyInput(e) {
+  if (e.target.classList.contains('qn')) changeQty(keyOf(e.target), parseInt(e.target.value, 10));
+}
+$('grid').addEventListener('change', onQtyInput);
+$('clist').addEventListener('change', onQtyInput);
+$('clist').addEventListener('click', function (e) {
+  var b = e.target.closest('button[data-a]'); if (b) act(b);
+});
+
 $('view').addEventListener('click', function () { this.classList.remove('open'); });
+$('opencart').addEventListener('click', openCart);
+$('closecart').addEventListener('click', closeCart);
+$('cart').addEventListener('click', function (e) { if (e.target === this) closeCart(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') { closeCart(); $('view').classList.remove('open'); }
+});
+$('cname').addEventListener('change', saveCust);
+$('cphone').addEventListener('change', saveCust);
+
+$('clear').addEventListener('click', function () {
+  if (!confirm('Remove all items from the cart?')) return;
+  cart = {}; saveCart(); render(); renderBar(); renderCart(); $('cmsg').innerHTML = '';
+});
+
+$('place').addEventListener('click', function () {
+  var name = $('cname').value.trim();
+  $('cerr').textContent = ''; $('cmsg').innerHTML = '';
+  if (!totals().lines) return;
+  if (!name) { $('cerr').textContent = 'Enter your name or shop name for the order sheet.'; $('cname').focus(); return; }
+  saveCust();
+  try {
+    var o = makePdf(name, $('cphone').value.trim());
+    deliver(o);
+    $('cmsg').innerHTML = 'Order sheet <b>' + esc(o.no) + '</b> created. Send it to AGC on WhatsApp to confirm your order. '
+      + '<a href="https://wa.me/919048376797" target="_blank" rel="noopener">Open WhatsApp</a>';
+  } catch (err) {
+    $('cerr').textContent = 'Could not create the PDF: ' + err.message + '.';
+  }
+});
+
+restore(); renderBar();
 load();
 </script>
 </body>
