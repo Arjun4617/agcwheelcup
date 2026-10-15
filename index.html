@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#CC202E">
+<title>AGC Car Accessories — Wheel Cover Catalog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#CC202E;--red-dark:#a81a26;--bg:#fff;--soft:#f6f4f4;--lbl:#1d1d1f;--lbl3:#6b6b70;--border:#e6e2e2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--lbl);font:15px/1.4 Figtree,-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased;padding-bottom:env(safe-area-inset-bottom)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-right)) 0 max(20px,env(safe-area-inset-left))}
+header{position:sticky;top:0;z-index:10;background:var(--red);border-bottom:1px solid rgba(255,255,255,.22);padding-top:env(safe-area-inset-top)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{height:38px;width:auto;display:block}
+.pill{background:var(--red);color:#fff;border:none;border-radius:999px;padding:11px 22px;font:600 14px Figtree,sans-serif;cursor:pointer}
+.bar .pill{background:#fff;color:var(--red)}
+.pill:active{background:var(--red-dark)}
+.hero{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.hero .wrap{position:relative;padding-top:56px;padding-bottom:44px}
+.hero h1{font-size:clamp(40px,8vw,84px);line-height:1.02;font-weight:600;letter-spacing:-1.5px}
+.hero h1 span{display:block}
+.hero p{margin-top:16px;font-size:clamp(15px,2.2vw,19px);font-weight:300;max-width:520px}
+.contact{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.wa{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--red);text-decoration:none;border-radius:999px;padding:10px 18px;font:600 14px Figtree,sans-serif}
+.wa svg{width:18px;height:18px;fill:#25D366}
+footer .wa{background:var(--soft);color:var(--lbl);margin:4px}
+footer .contact{justify-content:center;margin:0 0 16px}
+.tools{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:18px 0 6px}
+input{flex:1;min-width:0;max-width:420px;background:var(--soft);border:1px solid var(--border);color:var(--lbl);border-radius:999px;padding:12px 18px;font:400 16px Figtree,sans-serif;outline:none}
+input:focus{border-color:var(--red);background:#fff}
+#status{color:var(--lbl3);font-size:13px;margin-left:auto}
+#err{display:none;color:var(--red);padding:12px 0}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;padding:8px 0 40px}
+.card{background:#fff;border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.pic{position:relative;background:var(--soft)}
+.card img{width:100%;aspect-ratio:1;object-fit:cover;display:block;cursor:zoom-in}
+.dl{position:absolute;bottom:10px;right:10px;width:34px;height:34px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:none;color:#1d1d1f;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.dl:hover{background:#fff}
+.dl:disabled{opacity:.5;cursor:wait}
+.body{padding:12px 14px 14px}
+.glabel{margin-top:8px;font-size:13px;font-weight:600;color:var(--red)}
+.glabel:first-child{margin-top:0}
+dl{display:grid;grid-template-columns:auto auto;justify-content:start;gap:2px 6px;font-size:14px}
+dt{color:var(--lbl3)}dt::after{content:' :'}dd{font-weight:600}
+.none{font-size:13px;color:var(--lbl3)}
+footer{border-top:1px solid var(--border);padding:22px 0 30px;text-align:center;color:var(--lbl3);font-size:13px}
+#view{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:20;align-items:center;justify-content:center;padding:20px}
+#view.open{display:flex}#view img{max-width:100%;max-height:100%;border-radius:10px}
+@media(max-width:600px){
+  .bar{height:56px}.logo{height:32px}.pill{padding:9px 16px}
+  .hero .wrap{padding-top:36px;padding-bottom:30px}
+  input{max-width:none}#status{margin-left:0;width:100%}
+  #grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .body{padding:10px}dl{font-size:13px}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap bar">
+  <svg class="logo" role="img" aria-label="AGC Car Accessories" viewBox="0 0 272 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M113.548 22.7207C113.548 21.4585 114.055 20.3766 115.069 19.475C116.084 18.5734 117.301 18.1226 118.72 18.1226H159.894C161.686 18.1226 163.376 18.4231 164.965 19.0242C166.553 19.6252 167.906 20.4667 169.089 21.5186C170.272 22.5704 171.185 23.8026 171.827 25.2451C172.469 26.6876 172.807 28.1903 172.807 29.7831V31.8868C172.807 33.4796 172.469 34.9822 171.827 36.4248C171.185 37.8673 170.272 39.0994 169.089 40.1513C167.906 41.2031 166.52 42.0446 164.965 42.6457C163.376 43.2467 161.686 43.5473 159.894 43.5473H103.88C100.939 43.5473 98.3364 42.9162 96.0377 41.6239C93.739 40.3617 91.7784 38.7088 90.1896 36.6952C88.567 34.6817 87.35 32.4277 86.4711 29.9634C85.626 27.469 85.1865 25.0648 85.1865 22.6906C85.1865 20.3165 85.626 17.8221 86.5387 15.3878C87.4514 12.9235 88.736 10.6996 90.46 8.68602C92.184 6.67248 94.2461 5.04963 96.7138 3.75736C99.1477 2.49514 101.92 1.83398 104.996 1.83398H167.703C169.123 1.83398 170.34 2.28479 171.354 3.18637C172.368 4.08796 172.875 5.16984 172.875 6.43206C172.875 7.69427 172.368 8.77618 171.354 9.67776C170.34 10.5793 169.123 11.0302 167.703 11.0302H107.362C104.861 11.0302 102.832 11.4208 101.277 12.2322C99.7224 13.0437 98.5054 14.0054 97.6265 15.1474C96.7138 16.2894 96.1053 17.5516 95.8011 18.934C95.463 20.3165 95.3278 21.5486 95.3278 22.7207C95.3278 23.8927 95.4968 25.1249 95.8011 26.5073C96.1391 27.8898 96.7476 29.1219 97.6265 30.294C98.5392 31.436 99.7562 32.4277 101.277 33.2091C102.832 34.0205 104.861 34.4112 107.362 34.4112H159.522C160.367 34.4112 161.145 34.0506 161.821 33.3594C162.497 32.6682 162.835 31.8267 162.835 30.865C162.835 29.9033 162.531 29.0919 161.922 28.3706C161.314 27.6794 160.502 27.3188 159.488 27.3188H118.72C117.301 27.3188 116.084 26.868 115.069 25.9664C114.055 25.0648 113.548 23.9829 113.548 22.7207Z" fill="white"/>
+<path d="M183.562 22.716C183.562 20.2817 184.001 17.8475 184.914 15.4132C185.826 12.9489 187.111 10.7249 188.835 8.71141C190.559 6.69787 192.621 5.07502 195.089 3.78275C197.523 2.52053 200.295 1.85938 203.371 1.85938H266.078C267.498 1.85938 268.715 2.31016 269.729 3.21174C270.743 4.11332 271.25 5.19523 271.25 6.45745C271.25 7.71967 270.743 8.80157 269.729 9.70315C268.715 10.6047 267.498 11.0555 266.078 11.0555H205.636C203.134 11.0555 201.106 11.4462 199.551 12.2576C197.996 13.0691 196.779 14.0308 195.9 15.1728C194.987 16.3148 194.379 17.577 194.075 18.9594C193.737 20.3418 193.601 21.574 193.601 22.7461C193.601 23.9181 193.77 25.1503 194.075 26.5327C194.413 27.9151 195.021 29.1473 195.9 30.3194C196.813 31.4614 198.03 32.4531 199.551 33.2345C201.106 34.0459 203.1 34.4366 205.636 34.4366H266.078C267.498 34.4366 268.715 34.8874 269.729 35.789C270.743 36.6906 271.25 37.7725 271.25 39.0347C271.25 40.2969 270.743 41.4088 269.729 42.2804C268.715 43.1819 267.498 43.6328 266.078 43.6328H202.289C199.348 43.6328 196.745 43.0016 194.447 41.7094C192.148 40.4472 190.187 38.7943 188.598 36.7807C186.976 34.7672 185.759 32.5132 184.88 30.0489C184.035 27.5545 183.595 25.1503 183.595 22.7761" fill="white"/>
+<path d="M76.6341 37.2054C76.3298 36.6644 75.9918 36.1836 75.5523 35.7328L49.4216 4.65819C48.2047 3.18561 46.6159 2.0436 44.689 1.23218C42.7622 0.390697 40.7001 0 38.5705 0C36.2718 0 34.1083 0.450789 32.1138 1.38243C30.1194 2.31406 28.4968 3.51618 27.2798 4.95871L1.14912 36.2136C0.439229 36.9048 0.0673828 37.8365 0.0673828 38.9785C0.0673828 40.2407 0.57445 41.3526 1.58858 42.2242C2.60271 43.1258 3.81965 43.5765 5.23943 43.5765C6.82823 43.5765 8.1466 43.0055 9.22834 41.8635L18.2203 31.2549H58.853C58.853 31.2549 58.9206 31.2549 58.9544 31.2549L67.8112 41.7433C68.8253 42.9454 70.1775 43.5465 71.9015 43.5465C73.3213 43.5465 74.5382 43.0957 75.5523 42.1941C76.5665 41.2925 77.0735 40.2106 77.0735 38.9484C77.0735 38.3173 76.9383 37.7163 76.6341 37.1753V37.2054ZM25.86 22.179L34.4801 11.9911C34.9196 11.4802 35.4943 10.9392 36.2718 10.3081C37.0155 9.70705 37.793 9.40654 38.5705 9.40654C39.348 9.40654 40.1255 9.70705 40.8691 10.3081C41.6128 10.9092 42.2551 11.4802 42.7622 11.9911L51.3485 22.179H25.86Z" fill="white"/>
+<path d="M3.00858 62.0002C0.709888 62.0002 0 61.339 0 59.2052V56.1699C0 54.0061 0.709888 53.375 3.00858 53.375H8.45107C9.87085 53.375 10.5469 54.1564 10.7836 54.6372L9.5666 55.7492C9.39758 55.4186 9.05954 55.088 8.31585 55.088H3.04238C2.19727 55.088 1.89304 55.3585 1.89304 56.1699V59.2052C1.89304 59.9265 2.06205 60.2872 3.04238 60.2872H8.41726C9.16095 60.2872 9.46519 59.9566 9.63421 59.626L10.8512 60.7079C10.6483 61.1887 9.97226 61.9701 8.51868 61.9701H3.04238L3.00858 62.0002Z" fill="white"/>
+<path d="M29.3029 61.9994L28.086 59.9858H22.2378L21.0209 61.9994H18.8574L24.1647 53.4043H26.1591L31.4664 61.9994H29.3029ZM25.1788 55.0872L22.9815 58.6635H27.3761L25.1788 55.0872Z" fill="white"/>
+<path d="M48.6821 61.9994L45.3354 59.1744H42.2931V61.9994H40.3662V53.4043H48.2764C50.3385 53.4043 51.0484 54.1256 51.0484 56.079V56.5899C51.0484 58.6936 50.1695 59.1744 47.7694 59.1744L51.3526 61.9994H48.6821ZM49.1553 56.3495C49.1553 55.508 49.0539 55.1173 48.2088 55.1173H42.2593V57.792H48.2088C48.8849 57.792 49.1553 57.5215 49.1553 56.7702V56.3495Z" fill="white"/>
+<path d="M82.3449 61.9994L81.128 59.9858H75.2798L74.0629 61.9994H71.8994L77.2067 53.4043H79.2011L84.5084 61.9994H82.3449ZM78.2208 55.0872L76.0235 58.6635H80.4181L78.2208 55.0872Z" fill="white"/>
+<path d="M95.8387 62.0002C93.54 62.0002 92.8301 61.339 92.8301 59.2052V56.1699C92.8301 54.0061 93.54 53.375 95.8387 53.375H101.281C102.701 53.375 103.377 54.1564 103.614 54.6372L102.397 55.7492C102.228 55.4186 101.89 55.088 101.146 55.088H95.8725C95.0274 55.088 94.7231 55.3585 94.7231 56.1699V59.2052C94.7231 59.9265 94.8921 60.2872 95.8725 60.2872H101.247C101.991 60.2872 102.295 59.9566 102.464 59.626L103.681 60.7079C103.478 61.1887 102.802 61.9701 101.349 61.9701H95.8725L95.8387 62.0002Z" fill="white"/>
+<path d="M115.948 62.0002C113.649 62.0002 112.939 61.339 112.939 59.2052V56.1699C112.939 54.0061 113.649 53.375 115.948 53.375H121.391C122.81 53.375 123.486 54.1564 123.723 54.6372L122.506 55.7492C122.337 55.4186 121.999 55.088 121.255 55.088H115.982C115.137 55.088 114.832 55.3585 114.832 56.1699V59.2052C114.832 59.9265 115.002 60.2872 115.982 60.2872H121.357C122.1 60.2872 122.405 59.9566 122.574 59.626L123.791 60.7079C123.588 61.1887 122.912 61.9701 121.458 61.9701H115.982L115.948 62.0002Z" fill="white"/>
+<path d="M133.05 61.9994V53.4043H142.346V55.1173H134.943V57.0106H142.143V58.393H134.943V60.3164H142.346V61.9994H133.05Z" fill="white"/>
+<path d="M161.682 59.5058C161.682 61.339 160.836 62.0002 158.538 62.0002H151.709C151.709 61.4292 151.811 60.8882 151.845 60.3172H158.436C159.45 60.3172 159.755 60.1068 159.755 59.3555C159.755 58.6042 159.484 58.3938 158.47 58.3938H154.549C152.216 58.3938 151.473 57.6425 151.473 56.0798V55.7792C151.473 54.0662 152.25 53.375 154.583 53.375H161.377C161.31 53.946 161.208 54.517 161.141 55.088H154.583C153.67 55.088 153.399 55.3585 153.399 56.0196C153.399 56.6808 153.67 56.9813 154.583 56.9813H158.436C160.836 56.9813 161.682 57.6726 161.682 59.2052V59.5058Z" fill="white"/>
+<path d="M180.962 59.5058C180.962 61.339 180.117 62.0002 177.818 62.0002H170.99C170.99 61.4292 171.091 60.8882 171.125 60.3172H177.717C178.731 60.3172 179.035 60.1068 179.035 59.3555C179.035 58.6042 178.765 58.3938 177.75 58.3938H173.829C171.497 58.3938 170.753 57.6425 170.753 56.0798V55.7792C170.753 54.0662 171.53 53.375 173.863 53.375H180.658C180.59 53.946 180.489 54.517 180.421 55.088H173.863C172.95 55.088 172.68 55.3585 172.68 56.0196C172.68 56.6808 172.95 56.9813 173.863 56.9813H177.717C180.117 56.9813 180.962 57.6726 180.962 59.2052V59.5058Z" fill="white"/>
+<path d="M193.263 62.0002C190.897 62.0002 190.255 61.339 190.255 59.2052V56.1699C190.255 54.0662 190.931 53.375 193.263 53.375H198.368C200.667 53.375 201.376 54.0362 201.376 56.1699V59.2052C201.376 61.3089 200.667 62.0002 198.368 62.0002H193.263ZM199.517 56.2C199.517 55.3585 199.213 55.088 198.368 55.088H193.263C192.418 55.088 192.114 55.3284 192.114 56.2V59.2353C192.114 60.0768 192.385 60.3172 193.263 60.3172H198.368C199.247 60.3172 199.517 60.0768 199.517 59.2353V56.2Z" fill="white"/>
+<path d="M219.25 61.9994L215.904 59.1744H212.861V61.9994H210.935V53.4043H218.845C220.907 53.4043 221.617 54.1256 221.617 56.079V56.5899C221.617 58.6936 220.738 59.1744 218.338 59.1744L221.921 61.9994H219.25ZM219.724 56.3495C219.724 55.508 219.622 55.1173 218.777 55.1173H212.828V57.792H218.777C219.453 57.792 219.724 57.5215 219.724 56.7702V56.3495Z" fill="white"/>
+<path d="M231.018 61.9994V53.4043H232.911V61.9994H231.018Z" fill="white"/>
+<path d="M242.507 61.9994V53.4043H251.803V55.1173H244.4V57.0106H251.6V58.393H244.4V60.3164H251.803V61.9994H242.507Z" fill="white"/>
+<path d="M271.15 59.5058C271.15 61.339 270.305 62.0002 268.007 62.0002H261.178C261.178 61.4292 261.279 60.8882 261.313 60.3172H267.905C268.919 60.3172 269.223 60.1068 269.223 59.3555C269.223 58.6042 268.953 58.3938 267.939 58.3938H264.018C261.685 58.3938 260.941 57.6425 260.941 56.0798V55.7792C260.941 54.0662 261.719 53.375 264.051 53.375H270.846C270.778 53.946 270.677 54.517 270.609 55.088H264.051C263.139 55.088 262.868 55.3585 262.868 56.0196C262.868 56.6808 263.139 56.9813 264.051 56.9813H267.905C270.305 56.9813 271.15 57.6726 271.15 59.2052V59.5058Z" fill="white"/>
+</svg>
+  <button class="pill" id="reload">Refresh</button>
+</div></header>
+<section class="hero"><div class="wrap">
+  <h1><span>AGC</span>Car Accessories</h1>
+  <p>Wheel cover catalog. Over two decades of experience delivering high-quality automotive accessories.</p>
+  <div class="contact"><a class="wa" href="https://wa.me/919048376797" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.600 0 11.900-5.300 11.900-11.900 0-3.200-1.200-6.200-3.400-8.300zM12 21.700c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.700 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.3z"/></svg>+91 90483 76797</a><a class="wa" href="https://wa.me/917902888224" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.600 0 11.900-5.300 11.900-11.900 0-3.200-1.200-6.200-3.400-8.300zM12 21.700c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.700 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.3z"/></svg>+91 79028 88224</a></div>
+</div></section>
+<main class="wrap">
+  <div class="tools">
+    <input id="q" type="search" placeholder="Search by code or detail" aria-label="Search">
+    <div id="status">Loading…</div>
+  </div>
+  <div id="err"></div>
+  <div id="grid"></div>
+</main>
+<footer><div class="contact"><a class="wa" href="https://wa.me/919048376797" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.600 0 11.900-5.300 11.900-11.900 0-3.200-1.200-6.200-3.400-8.300zM12 21.700c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.700 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.3z"/></svg>+91 90483 76797</a><a class="wa" href="https://wa.me/917902888224" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.6 4.1 1.6 5.9L0 24l6.4-1.7a11.9 11.9 0 0 0 5.6 1.4c6.600 0 11.900-5.300 11.900-11.900 0-3.200-1.200-6.200-3.400-8.300zM12 21.700c-1.800 0-3.600-.5-5.100-1.400l-.4-.2-3.800 1 1-3.700-.2-.4a9.800 9.800 0 0 1-1.500-5.200c0-5.400 4.400-9.800 9.900-9.800 2.600 0 5.100 1 6.900 2.900a9.700 9.700 0 0 1 2.900 6.900c0 5.400-4.400 9.900-9.700 9.900zm5.400-7.400c-.3-.1-1.800-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.100c-.2.200-.3.200-.6.100a8 8 0 0 1-4-3.500c-.3-.5.300-.5.900-1.600.1-.2.100-.4 0-.5l-.9-2.200c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.400-.3.300-1 1-1 2.500s1.100 2.900 1.200 3.100c.1.200 2.100 3.200 5.100 4.500 1.900.8 2.600.9 3.600.7.600-.1 1.800-.7 2-1.400.3-.7.300-1.300.2-1.400-.1-.1-.3-.2-.6-.3z"/></svg>+91 79028 88224</a></div>© AGC Car Accessories</footer>
+<div id="view"><img alt=""></div>
+
+<script>
+// Paste your Apps Script Web app URL (ends with /exec). Add ?token=... if you set TOKEN in Code.gs.
+var API = 'https://script.google.com/macros/s/AKfycbw4WXfRqIVeVX9mN1MxFhfw3nItRMRe5BCZzAUt0WOUdvMMnbAZZX4xsIHI8CRDQa8/exec';
+
+var items = [];
+var $ = function (id) { return document.getElementById(id); };
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+function load() {
+  $('status').textContent = 'Loading…'; $('err').style.display = 'none';
+  fetch(API).then(function (r) { return r.json(); }).then(function (d) {
+    if (d.error) throw new Error(d.error);
+    items = d; render();
+  }).catch(function (e) {
+    $('err').textContent = 'Could not load the catalog: ' + e.message + '. Check the API URL and that the web app access is set to Anyone.';
+    $('err').style.display = 'block'; $('status').textContent = '';
+  });
+}
+
+function render() {
+  var q = $('q').value.toLowerCase();
+  var list = items.filter(function (it) {
+    return !q || it.name.toLowerCase().indexOf(q) !== -1 ||
+      it.groups.some(function (g) { return g.label.toLowerCase().indexOf(q) !== -1 || g.details.some(function (d) { return String(d.v).toLowerCase().indexOf(q) !== -1; }); });
+  });
+  $('status').textContent = list.length + ' of ' + items.length + ' items';
+  $('grid').innerHTML = list.map(function (it) {
+    var dl = it.matched ? it.groups.map(function (g) {
+      return '<div class="glabel">' + esc(g.label) + '</div>'
+        + (g.details.length
+          ? '<dl>' + g.details.map(function (d) { return '<dt>' + esc(d.k) + '</dt><dd>' + esc(d.v) + '</dd>'; }).join('') + '</dl>'
+          : '<div class="none">No details filled in the sheet</div>');
+    }).join('') : '<div class="none">No matching row in the sheet</div>';
+    var thumb = 'https://drive.google.com/thumbnail?id=' + it.id + '&sz=w600';
+    return '<div class="card"><div class="pic"><img loading="lazy" src="' + thumb + '" alt="' + esc(it.name) + '" data-full="https://drive.google.com/thumbnail?id=' + it.id + '&sz=w1600">'
+      + '<button class="dl" data-id="' + it.id + '" aria-label="Download JPG" title="Download JPG"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg></button></div>'
+      + '<div class="body">' + dl + '</div></div>';
+  }).join('');
+}
+
+$('q').addEventListener('input', render);
+$('reload').addEventListener('click', load);
+function download(btn) {
+  var it = items.filter(function (i) { return i.id === btn.dataset.id; })[0];
+  var url = API + (API.indexOf('?') > -1 ? '&' : '?') + 'action=download&id=' + btn.dataset.id;
+  btn.disabled = true;
+  fetch(url).then(function (r) { return r.json(); }).then(function (d) {
+    if (d.error) throw new Error(d.error);
+    var bin = atob(d.data), n = bin.length, u8 = new Uint8Array(n);
+    while (n--) u8[n] = bin.charCodeAt(n);
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([u8], { type: 'image/jpeg' }));
+    a.download = it.name.replace(/\.[a-z0-9]+$/i, '').replace(/^copy of\s*/i, '').replace(/[\\\/:*?"<>|,]+/g, '_') + '.jpg';
+    document.body.appendChild(a); a.click(); a.remove();
+  }).catch(function (e) { alert('Download failed: ' + e.message); })
+    .then(function () { btn.disabled = false; });
+}
+$('grid').addEventListener('click', function (e) {
+  var b = e.target.closest('.dl');
+  if (b) { download(b); return; }
+  if (e.target.tagName === 'IMG') { $('view').firstChild.src = e.target.dataset.full; $('view').classList.add('open'); }
+});
+$('view').addEventListener('click', function () { this.classList.remove('open'); });
+load();
+</script>
+</body>
+</html>
